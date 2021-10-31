@@ -6,16 +6,26 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Battlefield {
-    public String PlayerName1;
-    public String PlayerName2;
+    public String playerName;
     public int[][] battlefield;
     Scanner scanner = new Scanner(System.in);
+    Scanner stringScanner = new Scanner(System.in);
     Ship ship;
     ArrayList<Ship> ships;
     public int shotCounter = 0;
-
+    int shipDeckSum = 0;
 
     public Battlefield() {
+    }
+
+    public void welcomePlayer() {
+        System.out.println("WELCOME TO THE GAME BATTLEFIELD");
+        System.out.println("Player, please insert your name");
+        playerName = stringScanner.nextLine();
+        System.out.println("Hello " + playerName);
+    }
+
+    public void drawField() {
         battlefield = new int[10][10];
         System.out.println(" 0 1 2 3 4 5 6 7 8 9");
         for (int i = 0; i < battlefield.length; i++) {
@@ -45,6 +55,26 @@ public class Battlefield {
             System.out.println();
         }
     }
+    public void printEnemy(int[][] enemy) {
+        System.out.println("  0 1 2 3 4 5 6 7 8 9");
+        for (int i = 0; i < enemy.length; i++) {
+            System.out.print(i);
+            for (int j = 0; j < enemy[1].length; j++) {
+                if (enemy[i][j] == 0) {
+                    System.out.print(" -");
+                } else if (enemy[i][j] == 2) {
+                    System.out.print(" -");
+                } else if (enemy[i][j] == 1) {
+                    System.out.print(" o");
+                } else if(enemy[i][j] == 3) {
+                    System.out.print(" .");
+            }else {
+                    System.out.print(" " + enemy[i][j]);
+                }
+            }
+            System.out.println();
+        }
+    }
 
     public void allShips() {
         ships = new ArrayList<>();
@@ -58,6 +88,9 @@ public class Battlefield {
 //        ships.add(new Ship(4));
 //        ships.add(new Ship(4));
   //      ships.add(new Ship(5));
+        for(Ship s: ships) {
+            shipDeckSum = s.getShipType() + shipDeckSum;
+        }
     }
 
     public void printAllShips() {
@@ -75,7 +108,8 @@ public class Battlefield {
     }
 
     public void addShipsOnBattlefield() {
-        System.out.println("Choose ship to add: ");
+        allShips();
+        System.out.println(playerName + " Choose ship to add: ");
         for (Ship s : ships) {
             System.out.println("Insert start X coordinate");
             int x = scanner.nextInt();
@@ -97,21 +131,26 @@ public class Battlefield {
         }
     }
 
-    public void makeShot() {
+    public void makeShot(int[][] shot) {
         do {
-            System.out.println("Choose field to shoot at!");
+            System.out.println(playerName + " Choose field to shoot at!");
             System.out.println("Insert X coordinate");
             int x = scanner.nextInt();
             System.out.println("Insert Y Coordinate");
             int y = scanner.nextInt();
-            if (battlefield[y][x] == 2) {
+            if (shot[y][x] == 2) {
                 System.out.println("Hit");
-                battlefield[y][x] = 1;
+                shot[y][x] = 1;
                 shotCounter++;
-                printBattlefield();
-                winCondition();
+                printEnemy(shot);
+                if(shotCounter == shipDeckSum){
+                    break;
+                }
             } else {
+                shot[y][x] = 3;
                 System.out.println("Miss");
+                printEnemy(shot);
+
                 break;
             }
         }
@@ -119,14 +158,14 @@ public class Battlefield {
     }
 
     public boolean winCondition() {
-        int shipDeckSum = 0;
-        for(Ship s: ships) {
-            shipDeckSum = s.getShipType() + shipDeckSum;
-        }
+
         if (shotCounter == shipDeckSum) {
             System.out.println("YOU ARE THE WINNER!");
             return true;
         } return false;
 
     }
+    /// Lai izveidotu spēli pret datoru, jāsataisa vēl 2 funkcijas
+    ///add ships - random aizpilda lauku
+    /// make shot - random aizpilda lauku
 }
