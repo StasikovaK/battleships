@@ -2,11 +2,11 @@ package main.java;
 public class Ship {
     private int xCoordinate;
     private int yCoordinate;
-    private String shipDirection;
+    private int shipDirection;
     private int shipType;
     private boolean placedOnBattlefield;
 
-    public Ship(int shipType, int xCoordinate, int yCoordinate, String shipDirection) {
+    public Ship(int shipType, int xCoordinate, int yCoordinate, int shipDirection) {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
         this.shipDirection = shipDirection;
@@ -25,7 +25,7 @@ public class Ship {
         return yCoordinate;
     }
 
-    public String getShipDirection() {
+    public int getShipDirection() {
         return shipDirection;
     }
 
@@ -40,4 +40,5 @@ public class Ship {
     public void setPlacedOnBattlefield(boolean placedOnBattlefield) {
         this.placedOnBattlefield = placedOnBattlefield;
     }
+
 }
