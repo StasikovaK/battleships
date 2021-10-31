@@ -3,6 +3,7 @@ package main.java;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Battlefield {
@@ -14,16 +15,26 @@ public class Battlefield {
     ArrayList<Ship> ships;
     public int shotCounter = 0;
     int shipDeckSum = 0;
+    Random random = new Random();
 
     public Battlefield() {
     }
 
+
+
     public void welcomePlayer() {
-        System.out.println("WELCOME TO THE GAME BATTLEFIELD");
+
         System.out.println("Player, please insert your name");
         playerName = stringScanner.nextLine();
         System.out.println("Hello " + playerName);
+
     }
+
+    public void welcomeComputer() {
+        System.out.println("Hi! Im the Computer. Try to win me!");
+        playerName = "BattelfieldMaster";
+    }
+
 
     public void drawField() {
         battlefield = new int[10][10];
@@ -156,6 +167,28 @@ public class Battlefield {
         }
         while (true);
     }
+    public void computerMakesShot(int[][] shot) {
+        do {
+            int x = random.nextInt(9);
+            int y = random.nextInt(9);
+            if (shot[y][x] == 2) {
+                System.out.println("Hit");
+                shot[y][x] = 1;
+                shotCounter++;
+                printEnemy(shot);
+                if(shotCounter == shipDeckSum){
+                    break;
+                }
+            } else {
+                shot[y][x] = 3;
+                System.out.println("Miss");
+                printEnemy(shot);
+
+                break;
+            }
+        }
+        while (true);
+    }
 
     public boolean winCondition() {
 
@@ -165,7 +198,24 @@ public class Battlefield {
         } return false;
 
     }
-    /// Lai izveidotu spēli pret datoru, jāsataisa vēl 2 funkcijas
-    ///add ships - random aizpilda lauku
-    /// make shot - random aizpilda lauku
+    public void computerAddShips(){
+        allShips();
+        for (Ship s : ships) {
+            int x = random.nextInt(9);
+            int y = random.nextInt(9);
+            int direction = (random.nextInt(1)+1);
+
+            for (int i = 0; i < s.getShipType(); i++) {
+                if (direction == 1) {
+                    battlefield[x + i][y] = 2;
+                } else {
+                    battlefield[x][y + i] = 2;
+                }
+            }
+            printBattlefield();
+        }
+
+    }
+
+
 }
