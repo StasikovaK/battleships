@@ -37,7 +37,7 @@ public class Battlefield {
 
     public void drawField() {
         battlefield = new int[10][10];
-        System.out.println("  0 1 2 3 4 5 6 7 8 9");
+        System.out.println(" 0 1 2 3 4 5 6 7 8 9");
         for (int i = 0; i < battlefield.length; i++) {
             System.out.print(i);
             for (int j = 0; j < battlefield[1].length; j++) {
@@ -134,10 +134,10 @@ public class Battlefield {
                 s.setShipType(type);
                 if (type == 1) {
                     System.out.println("Insert the X coordinate:");
-                    int z = scanner.nextInt();
+                    int x1 = scanner.nextInt();
                     System.out.println("Insert the Y coordinate");
-                    int f = scanner.nextInt();
-                    battlefield[f][z] = 2;
+                    int y1 = scanner.nextInt();
+                    battlefield[y1][x1] = 2;
 
 
                 } else {
@@ -147,7 +147,7 @@ public class Battlefield {
                     int y = scanner.nextInt();
                     System.out.println("Choose direction: " +
                             "1. Vertical" +
-                            "2. Horizontal");
+                            " 2. Horizontal");
 
                     int direction = scanner.nextInt();
 
@@ -277,6 +277,7 @@ public class Battlefield {
                 } else {
                     xi = i;
                 }
+
                 if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0) {
                     if (battlefield[x + 1 + xi][y + yi] != 0) {
                         return false;
@@ -288,12 +289,12 @@ public class Battlefield {
                     }
                 }
                 if (y + 1 + yi < battlefield.length && y + 1 + yi >= 0) {
-                    if (battlefield[x + 1 + xi][y + 1 + yi] != 0) {
+                    if (battlefield[x + xi][y + 1 + yi] != 0) {
                         return false;
                     }
                 }
                 if (y - 1 + yi < battlefield.length && y - 1 + yi >= 0) {
-                    if (battlefield[x + xi][y - 1 - yi] != 0) {
+                    if (battlefield[x + xi][y - 1 + yi] != 0) {
                         return false;
                     }
                 }
