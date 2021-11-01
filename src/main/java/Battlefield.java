@@ -158,7 +158,6 @@ public class Battlefield {
                         continue;
                     }
 
-
                     for (int i = 0; i < s.getShipType(); i++) {
                         if (direction == 1) {
                             battlefield[y + i][x] = 2;
