@@ -32,7 +32,7 @@ public class Battlefield {
 
     public void welcomeComputer() {
         System.out.println("Hi! Im the Computer. Try to win me!");
-        playerName = "BattelfieldMaster";
+        playerName = "BattleshipMaster";
     }
 
 
@@ -76,9 +76,9 @@ public class Battlefield {
                 } else if (enemy[i][j] == 2) {
                     System.out.print(" -");
                 } else if (enemy[i][j] == 1) {
-                    System.out.print(" o");
+                    System.out.print(" X");
                 } else if(enemy[i][j] == 3) {
-                    System.out.print(" .");
+                    System.out.print(" o");
             }else {
                     System.out.print(" " + enemy[i][j]);
                 }
@@ -126,7 +126,7 @@ public class Battlefield {
         for (Ship s : ships) {
             System.out.println("Insert start X coordinate");
             int x = scanner.nextInt();
-            System.out.println("Insert start y coordinate");
+            System.out.println("Insert start Y coordinate");
             int y = scanner.nextInt();
             System.out.println("Choose direction: " +
                     "1. Vertical" +
@@ -176,6 +176,7 @@ public class Battlefield {
         while (true);
     }
     public void computerMakesShot(int[][] shot) {
+        System.out.println("Now BattleshipMaster's turn!");
         do {
             int x = random.nextInt(9);
             int y = random.nextInt(9);

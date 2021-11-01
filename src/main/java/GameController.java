@@ -56,7 +56,7 @@ public class GameController {
 
         } else {
             System.out.println("Creating battlefield for Computer " + computerBattlefield.playerName);
-            computerBattlefield.drawField();
+
         }
     }
 
