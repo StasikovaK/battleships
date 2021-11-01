@@ -17,6 +17,10 @@ public class Ship {
         this.shipType = shipType;
     }
 
+    public int getShipType() {
+        return shipType;
+    }
+
     public int getxCoordinate() {
         return xCoordinate;
     }
@@ -27,10 +31,6 @@ public class Ship {
 
     public int getShipDirection() {
         return shipDirection;
-    }
-
-    public int getShipType() {
-        return shipType;
     }
 
     public boolean isPlacedOnBattlefield() {

@@ -20,8 +20,6 @@ public class Battlefield {
     public Battlefield() {
     }
 
-
-
     public void welcomePlayer() {
 
         System.out.println("Player, please insert your name");
@@ -91,33 +89,13 @@ public class Battlefield {
         ships = new ArrayList<>();
         ships.add(new Ship(1));
        ships.add(new Ship(2));
-//        ships.add(new Ship(2));
-//        ships.add(new Ship(2));
-//        ships.add(new Ship(2));
- //       ships.add(new Ship(3));
-//        ships.add(new Ship(3));
         ships.add(new Ship(3));
-//        ships.add(new Ship(4));
         ships.add(new Ship(4));
-  //      ships.add(new Ship(5));
         for(Ship s: ships) {
             shipDeckSum = s.getShipType() + shipDeckSum;
         }
     }
 
-    public void printAllShips() {
-        System.out.println("AVAILABLE SHIPS");
-        for (Ship s : ships) {
-            if (!s.isPlacedOnBattlefield())
-                System.out.println("You have available ship: " + s.getShipType() + " to place -" + !s.isPlacedOnBattlefield());
-        }
-        System.out.println("");
-        System.out.println("PLACED SHIPS");
-        for (Ship s : ships) {
-            if (s.isPlacedOnBattlefield())
-                System.out.println(" You have placed ship:" + s.getShipType() + " placed.");
-        }
-    }
 
     public void addShipsOnBattlefield() {
         allShips();
@@ -151,7 +129,9 @@ public class Battlefield {
     }
 
     public void makeShot(int[][] shot) {
+
         do {
+            System.out.println("\n");
             System.out.println(playerName + " Choose field to shoot at!");
             System.out.println("Insert X coordinate");
             int x = scanner.nextInt();
@@ -176,7 +156,7 @@ public class Battlefield {
         while (true);
     }
     public void computerMakesShot(int[][] shot) {
-        System.out.println("Now BattleshipMaster's turn!");
+        System.out.println("BattleshipMaster's turn");
         do {
             int x = random.nextInt(9);
             int y = random.nextInt(9);
@@ -185,6 +165,8 @@ public class Battlefield {
                 shot[y][x] = 1;
                 shotCounter++;
                 printEnemy(shot);
+
+//               printBattlefield();
                 if(shotCounter == shipDeckSum){
                     break;
                 }
@@ -210,8 +192,8 @@ public class Battlefield {
     public void computerAddShips(){
         allShips();
         for (Ship s : ships) {
-            int x = random.nextInt(9);
-            int y = random.nextInt(9);
+            int x = random.nextInt(8);
+            int y = random.nextInt(8);
             int direction = (random.nextInt(1)+1);
 
             for (int i = 0; i < s.getShipType(); i++) {
@@ -240,40 +222,40 @@ public class Battlefield {
             }
         }
 
-        //check if the there is enough free space around the ship
-        while (shipType != 0) {
-            for (int i = 0; i < shipType; i++) {
-                int xi = 0;
-                int yi = 0;
-                if (direction == 1) {
-                    yi = i;
-                } else {
-                    xi = i;
-                }
-
-                if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0){
-                    if (battlefield[x + 1 + xi][y + yi]!=0){
-                        return false;
-                    }
-                }
-                if (x - 1 + xi < battlefield.length && x - 1 + xi >= 0){
-                    if (battlefield[x - 1 + xi][y + yi]!=0){
-                        return false;
-                    }
-                }
-                if (y + 1 + yi < battlefield.length && y + 1 + yi >= 0){
-                    if (battlefield[x + xi][y + 1 + yi]!=0){
-                        return false;
-                    }
-                }
-                if (y - 1 + yi < battlefield.length && y - 1 + yi >= 0){
-                    if (battlefield[x + xi][y - 1 + yi]!=0){
-                        return false;
-                    }
-                }
-            }
-            shipType--;
-        }
+//        //check if the there is enough free space around the ship
+//        while (shipType != 0) {
+//            for (int i = 0; i < shipType; i++) {
+//                int xi = 0;
+//                int yi = 0;
+//                if (direction == 1) {
+//                    yi = i;
+//                } else {
+//                    xi = i;
+//                }
+//
+//                if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0){
+//                    if (battlefield[x + 1 + xi][y + yi]!=0){
+//                        return false;
+//                    }
+//                }
+//                if (x - 1 + xi < battlefield.length && x - 1 + xi >= 0){
+//                    if (battlefield[x - 1 + xi][y + yi]!=0){
+//                        return false;
+//                    }
+//                }
+//                if (y + 1 + yi < battlefield.length && y + 1 + yi >= 0){
+//                    if (battlefield[x + xi][y + 1 + yi]!=0){
+//                        return false;
+//                    }
+//                }
+//                if (y - 1 + yi < battlefield.length && y - 1 + yi >= 0){
+//                    if (battlefield[x + xi][y - 1 + yi]!=0){
+//                        return false;
+//                    }
+//                }
+//            }
+//            shipType--;
+//        }
         return true;
     }
 

@@ -52,12 +52,14 @@ public class GameController {
         System.out.println("Creating battlefield for Player " + battlefield1.playerName);
 
         if (gameMode == 1) {
-            System.out.println("\n Creating battlefield  for Player " + battlefield2.playerName);
 
+            System.out.println("\n Creating battlefield  for Player " + battlefield2.playerName);
+            battlefield2.drawField();
         } else {
             System.out.println("Creating battlefield for Computer " + computerBattlefield.playerName);
-
+            computerBattlefield.drawField();
         }
+
     }
 
     public void prepareField() {
@@ -67,7 +69,7 @@ public class GameController {
         } else {
             computerBattlefield.computerAddShips();
         }
-//        clearScreen();
+
     }
 
     public void startGame() {
@@ -96,11 +98,4 @@ public class GameController {
         }
     }
 
-//    public static void clearScreen() {
-//        try {
-//            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-//        } catch (InterruptedException | IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
