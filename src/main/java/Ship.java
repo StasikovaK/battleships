@@ -1,4 +1,4 @@
-package main.java;
+
 public class Ship {
     private int xCoordinate;
     private int yCoordinate;

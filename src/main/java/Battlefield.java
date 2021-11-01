@@ -1,4 +1,4 @@
-package main.java;
+
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class Battlefield {
 
     public void drawField() {
         battlefield = new int[10][10];
-        System.out.println(" 0 1 2 3 4 5 6 7 8 9");
+        System.out.println("  0 1 2 3 4 5 6 7 8 9");
         for (int i = 0; i < battlefield.length; i++) {
             System.out.print(i);
             for (int j = 0; j < battlefield[1].length; j++) {
@@ -89,15 +89,16 @@ public class Battlefield {
 
     public void allShips() {
         ships = new ArrayList<>();
+        ships.add(new Ship(1));
        ships.add(new Ship(2));
 //        ships.add(new Ship(2));
 //        ships.add(new Ship(2));
 //        ships.add(new Ship(2));
+ //       ships.add(new Ship(3));
 //        ships.add(new Ship(3));
-//        ships.add(new Ship(3));
-//        ships.add(new Ship(3));
+        ships.add(new Ship(3));
 //        ships.add(new Ship(4));
-//        ships.add(new Ship(4));
+        ships.add(new Ship(4));
   //      ships.add(new Ship(5));
         for(Ship s: ships) {
             shipDeckSum = s.getShipType() + shipDeckSum;
@@ -120,6 +121,7 @@ public class Battlefield {
 
     public void addShipsOnBattlefield() {
         allShips();
+        drawField();
         System.out.println(playerName + " Choose ship to add: ");
         for (Ship s : ships) {
             System.out.println("Insert start X coordinate");
@@ -130,12 +132,18 @@ public class Battlefield {
                     "1. Vertical" +
                     "2. Horizontal");
             int direction = scanner.nextInt();
+            if (!isAvailable(x, y, s.getShipType(), direction, battlefield)) {
+                System.out.println("----------------------------------------------------------------");
+                System.out.println("Coordinates do not correspond the rules of the game! Try again.");
+                System.out.println("----------------------------------------------------------------");
+                continue;
+            }
 
             for (int i = 0; i < s.getShipType(); i++) {
                 if (direction == 1) {
-                    battlefield[x + i][y] = 2;
+                    battlefield[y + i][x] = 2;
                 } else {
-                    battlefield[x][y + i] = 2;
+                    battlefield[y][x + i] = 2;
                 }
             }
             printBattlefield();
@@ -207,16 +215,65 @@ public class Battlefield {
 
             for (int i = 0; i < s.getShipType(); i++) {
                 if (direction == 1) {
-                    battlefield[x + i][y] = 2;
+                    battlefield[y + i][x] = 2;
                 } else {
-                    battlefield[x][y + i] = 2;
+                    battlefield[y][x + i] = 2;
                 }
             }
-            printBattlefield();
+            System.out.println();
+//            printBattlefield();
         }
 
     }
 
-   // public static boolean isAvailable(int x, int y, int )
+    public static boolean isAvailable(int x, int y, int shipType, int direction, int[][] battlefield) {
+        //check if it fits the field
+        if (direction == 1) {
+            if (y + shipType > battlefield.length ) {
+                return false;
+            }
+        }
+        if (direction == 2) {
+            if (x + shipType > battlefield[0].length ) {
+                return false;
+            }
+        }
+
+        //check if the there is enough free space around the ship
+        while (shipType != 0) {
+            for (int i = 0; i < shipType; i++) {
+                int xi = 0;
+                int yi = 0;
+                if (direction == 1) {
+                    yi = i;
+                } else {
+                    xi = i;
+                }
+
+                if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0){
+                    if (battlefield[x + 1 + xi][y + yi]!=0){
+                        return false;
+                    }
+                }
+                if (x - 1 + xi < battlefield.length && x - 1 + xi >= 0){
+                    if (battlefield[x - 1 + xi][y + yi]!=0){
+                        return false;
+                    }
+                }
+                if (y + 1 + yi < battlefield.length && y + 1 + yi >= 0){
+                    if (battlefield[x + xi][y + 1 + yi]!=0){
+                        return false;
+                    }
+                }
+                if (y - 1 + yi < battlefield.length && y - 1 + yi >= 0){
+                    if (battlefield[x + xi][y - 1 + yi]!=0){
+                        return false;
+                    }
+                }
+            }
+            shipType--;
+        }
+        return true;
+    }
 
 }
