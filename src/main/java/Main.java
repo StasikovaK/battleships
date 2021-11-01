@@ -6,7 +6,5 @@ public class Main {
         gameController.createBattlefield();
         gameController.prepareField();
         gameController.startGame();
-
-
     }
 }

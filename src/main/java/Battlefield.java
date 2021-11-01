@@ -166,7 +166,6 @@ public class Battlefield {
                 shotCounter++;
                 printEnemy(shot);
 
-//               printBattlefield();
                 if(shotCounter == shipDeckSum){
                     break;
                 }
@@ -204,7 +203,6 @@ public class Battlefield {
                 }
             }
             System.out.println();
-//            printBattlefield();
         }
 
     }
@@ -222,40 +220,6 @@ public class Battlefield {
             }
         }
 
-//        //check if the there is enough free space around the ship
-//        while (shipType != 0) {
-//            for (int i = 0; i < shipType; i++) {
-//                int xi = 0;
-//                int yi = 0;
-//                if (direction == 1) {
-//                    yi = i;
-//                } else {
-//                    xi = i;
-//                }
-//
-//                if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0){
-//                    if (battlefield[x + 1 + xi][y + yi]!=0){
-//                        return false;
-//                    }
-//                }
-//                if (x - 1 + xi < battlefield.length && x - 1 + xi >= 0){
-//                    if (battlefield[x - 1 + xi][y + yi]!=0){
-//                        return false;
-//                    }
-//                }
-//                if (y + 1 + yi < battlefield.length && y + 1 + yi >= 0){
-//                    if (battlefield[x + xi][y + 1 + yi]!=0){
-//                        return false;
-//                    }
-//                }
-//                if (y - 1 + yi < battlefield.length && y - 1 + yi >= 0){
-//                    if (battlefield[x + xi][y - 1 + yi]!=0){
-//                        return false;
-//                    }
-//                }
-//            }
-//            shipType--;
-//        }
         return true;
     }
 
