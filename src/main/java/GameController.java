@@ -52,7 +52,6 @@ public class GameController {
         System.out.println("Creating battlefield for Player " + battlefield1.playerName);
 
         if (gameMode == 1) {
-
             System.out.println("\n Creating battlefield  for Player " + battlefield2.playerName);
             battlefield2.drawField();
         } else {
@@ -69,7 +68,6 @@ public class GameController {
         } else {
             computerBattlefield.computerAddShips();
         }
-
     }
 
     public void startGame() {
@@ -97,5 +95,4 @@ public class GameController {
             }
         }
     }
-
 }
