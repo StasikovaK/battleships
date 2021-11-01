@@ -1,4 +1,4 @@
-package main.java;
+
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -67,7 +67,7 @@ public class GameController {
         } else {
             computerBattlefield.computerAddShips();
         }
-        clearScreen();
+//        clearScreen();
     }
 
     public void startGame() {
@@ -96,11 +96,11 @@ public class GameController {
         }
     }
 
-    public static void clearScreen() {
-        try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void clearScreen() {
+//        try {
+//            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+//        } catch (InterruptedException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

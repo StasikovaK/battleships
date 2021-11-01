@@ -1,10 +1,11 @@
-package main.java;
+
 public class Ship {
     private int xCoordinate;
     private int yCoordinate;
     private int shipDirection;
     private int shipType;
     private boolean placedOnBattlefield;
+    private int shipCount;
 
     public Ship(int shipType, int xCoordinate, int yCoordinate, int shipDirection) {
         this.xCoordinate = xCoordinate;
@@ -13,8 +14,8 @@ public class Ship {
         this.shipType = shipType;
     }
 
-    public Ship(int shipType) {
-        this.shipType = shipType;
+    public Ship() {
+
     }
 
     public int getxCoordinate() {
@@ -33,6 +34,18 @@ public class Ship {
         return shipType;
     }
 
+    public void setShipType(int shipType) {
+        this.shipType = shipType;
+    }
+
+    public void setShipCount(int shipCount) {
+        this.shipCount = shipCount;
+    }
+
+    public int getShipCount() {
+        return shipCount;
+    }
+
     public boolean isPlacedOnBattlefield() {
         return placedOnBattlefield;
     }
@@ -40,5 +53,6 @@ public class Ship {
     public void setPlacedOnBattlefield(boolean placedOnBattlefield) {
         this.placedOnBattlefield = placedOnBattlefield;
     }
+
 
 }
