@@ -14,7 +14,7 @@ public class Battlefield {
     Ship ship;
     ArrayList<Ship> ships;
     public int shotCounter = 0;
-    int shipDeckSum = 0;
+    int shipDeckSum = 10;
     Random random = new Random();
 
     public Battlefield() {
@@ -37,7 +37,7 @@ public class Battlefield {
 
     public void drawField() {
         battlefield = new int[10][10];
-        System.out.println(" 0 1 2 3 4 5 6 7 8 9");
+        System.out.println("  0 1 2 3 4 5 6 7 8 9");
         for (int i = 0; i < battlefield.length; i++) {
             System.out.print(i);
             for (int j = 0; j < battlefield[1].length; j++) {
@@ -196,7 +196,6 @@ public class Battlefield {
                 System.out.println("Miss");
                 printEnemy(shot);
 
-                break;
             }
         }
         while (true);
@@ -229,9 +228,8 @@ public class Battlefield {
 
         if (shotCounter == shipDeckSum) {
             System.out.println("YOU ARE THE WINNER!");
-            return true;
         }
-        return false;
+        return true;
 
     }
 
@@ -257,12 +255,12 @@ public class Battlefield {
     public static boolean isAvailable(int x, int y, int shipType, int direction, int[][] battlefield) {
         //check if it fits the field
         if (direction == 1) {
-            if (y + shipType > battlefield.length) {
+            if (y + shipType > battlefield.length ) {
                 return false;
             }
         }
         if (direction == 2) {
-            if (x + shipType > battlefield[0].length) {
+            if (x + shipType > battlefield[0].length ) {
                 return false;
             }
         }
@@ -278,27 +276,26 @@ public class Battlefield {
                     xi = i;
                 }
 
-                if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0) {
-                    if (battlefield[x + 1 + xi][y + yi] != 0) {
-                        return false;
-                    }
-                    if (x - 1 + xi < battlefield.length && x - 1 + xi >= 0) {
-                        if (battlefield[x - 1 + xi][y + yi] != 0) {
-                            return false;
-                        }
-                    }
-                }
-                if (y + 1 + yi < battlefield.length && y + 1 + yi >= 0) {
-                    if (battlefield[x + xi][y + 1 + yi] != 0) {
+                if (x + 1 + xi < battlefield.length && x + 1 + xi >= 0){
+                    if (battlefield[x + 1 + xi][y + yi]!=0){
                         return false;
                     }
                 }
-                if (y - 1 + yi < battlefield.length && y - 1 + yi >= 0) {
-                    if (battlefield[x + xi][y - 1 + yi] != 0) {
+                if (x - 1 + xi < battlefield.length && x - 1 + xi >= 0){
+                    if (battlefield[x - 1 + xi][y + yi]!=0){
                         return false;
                     }
                 }
-
+                if (y + 1 + yi < battlefield.length && y + 1 + yi >= 0){
+                    if (battlefield[x + xi][y + 1 + yi]!=0){
+                        return false;
+                    }
+                }
+                if (y - 1 + yi < battlefield.length && y - 1 + yi >= 0){
+                    if (battlefield[x + xi][y - 1 + yi]!=0){
+                        return false;
+                    }
+                }
             }
             shipType--;
         }
